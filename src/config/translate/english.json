@@ -1,0 +1,55 @@
+{
+  "home": {
+    "docs": "Docs",
+    "staking": "Staking",
+    "unique": "Unique",
+    "visionary": "Visionary",
+    "powerful": "Powerful",
+    "kingdetails": "Crowning DeFi. <span style='font-family: gotham-bold'>KING</span> is the parent company in charge of the development of three of the most innovative services in decentralised finance. Our ecosystem is based on our ‘ internal circular economy', where our branches feed each other continuously and in a balanced way throughout the individual generation of funds.",
+    "immerse": "Immerse yourself within <span style='font-family: gotham-bold'>KingPad</span>, <span style='font-family: gotham-bold'>KingLand</span> and <span style='font-family: gotham-bold'>KingFloki</span>.",
+    "ecosystem": "<span style='font-family: gotham-bold'>A coin</span> to drive the <span style='font-family: gotham-bold'>whole ecosystem</span>",
+    "connectwithking": "CONNECT WITH KING",
+    "awesomegame": "An awesome game in the",
+    "metaverse": "METAVERSE",
+    "ingame": "In game",
+    "playto": "This is",
+    "earn": "King Pass",
+    "mintnow": "MINT NOW",
+    "playnow": "SUBSCRIBE NOW",
+    "safeplace": "A safe place ",
+    "jointhebest": "to join the best.",
+    "beking": "Be the king of ",
+    "realestate": "your Real Estate",
+    "comingsoon": "COMING SOON",
+    "token": "Token",
+    "team": "Team",
+    "mediakit": "Media Kit",
+    "kingpass": "King Pass",
+    "cookie": "Cookie preferences",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use"
+  },
+  "token": {
+    "liquidity": "LIQUIDITY",
+    "staking": "STAKING",
+    "burned": "BURNED",
+    "holding": "HOLDINGS",
+    "contractaddress": "CONTRACT ADDRESS",
+    "announce": "To be announced",
+    "buyking": "BUY KING",
+    "newlisting": "New listings coming soon",
+    "exclusive": "An exclusive <span style='font-family:gotham-bold'>use case</span>",
+    "tokendetails1": "There's only one <span style='font-family:gotham-bold'>$KING</span> to rule them all. <span style='font-family:gotham-bold'>$KING</span> is indeed our one and only currency that will play an essential role within our three branches.",
+    "tokendetails2": "Internal economical balance is found within <span style='font-family:gotham-bold'>KING</span> through our coin distribution. Our crypto-currency is an appreciative and deflationary asset that will allow you to purchase in game NFT’s, digital land, online competition vouchers, real estate fractions and most importantly, an asset that will make you an exclusive user of our demanded platforms (KingFloki, KingPad and KingLand).",
+    "tokendetails3": "In fine, <span style='font-family:gotham-bold'>$KING</span> appreciates as the internal ecosystem grows, making you an actual shareholder of the company and its success.",
+    "stakingplatform": "<span style='font-family:gotham-bold'>Staking</span> platform",
+    "launch": "LAUNCH APP"
+  },
+  "team": {
+    "meetkings": "<span style='font-family: gotham-thin'>Meet the</span> <span style='font-family: gotham-bold'>Kings</span>",
+    "details": "<span style='font-family:gotham-bold'>KING</span>'s team is formed by highly reliable and committed people with years of experience in decentralised finance and the business field. At <span style='font-family:gotham-bold'>KING</span> we vouch for reliability, commitment, flexibility, innovation, diversity and leadership."
+  },
+  "staking": {
+    "earnkings": "<span style='font-family: gotham-thin'>The best way to</span> <span style='font-family: gotham-bold'>earn King</span>"
+  }
+}

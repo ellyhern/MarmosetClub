@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Rubik&display=swap');
+
+/* ========================== font guide
+* font-family: 'Barlow', sans-serif; // base font
+* font-family: 'Chango', cursive; // effect font
+* font-family: 'Source Sans Pro', sans-serif;  // clean font
+*/
+
+@font-face {
+  font-family: 'gotham-bold';
+  src: url('assets/font/Gotham-Bold.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'gotham-thin';
+  src: url('assets/font/Gotham-Thin.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'gotham-book';
+  src: url('assets/font/GothamBook.otf') format('openType');
+}
+
+html {
+   max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+
+  /* base font */
+  font-family: 'gotham-book';
+  font-size: 12px;
+  color: #ffffff;
+  scroll-behavior: smooth;
+   max-width: 100%;
+    overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.scroller {
+  width: auto;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.material-symbols-rounded {
+  font-size: 20px !important;
+}
+
+.Toastify__toast-body {
+  color: #444C63;
+  font-size: 16px;
+  padding-left: 20px;
+  line-height: 20px;
+  padding: 0px;
+  padding-top: 25px;
+  width: 100%;
+  font-weight: 400;
+  margin-left: 25px !important;
+} 
+
+.Toastify__toast, .Toastify__toast-container, .Toastify__toast-container--top-right {
+  width: 380px !important;
+}
+
+.react-responsive-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-responsive-modal-modal {
+  background-color: #171717 !important;
+  border-radius: 30px;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.react-responsive-modal-closeButton {
+  display: none !important;
+}
+
+.react-responsive-modal-overlay {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
