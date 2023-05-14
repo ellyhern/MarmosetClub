@@ -1,9 +1,9 @@
 export const PUBLIC_ROUTES = {
   default: '/',
   home: '/home',
-  token: '/token',
-  team: '/team',
-  staking: '/staking',
+  game: '/game',
+  contacts: '/contacts',
+  articles: '/articles',
   privacy: '/privacy',
   terms: '/terms',
   error404: '/error404'

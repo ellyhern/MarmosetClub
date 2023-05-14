@@ -17,7 +17,12 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "prettier", "eslint-plugin", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "prettier",
+    "eslint-plugin",
+    "@typescript-eslint"
+  ],
   "rules": {
     "no-console": "off", // Means error
     "default-case": "error",
@@ -31,7 +36,10 @@
       }
     ],
     "no-var": "error",
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
     "linebreak-style": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "react/react-in-jsx-scope": "off",
@@ -41,9 +49,18 @@
       "error",
       {
         "selector": "variable",
-        "types": ["boolean"],
-        "format": ["PascalCase"],
-        "prefix": ["can", "has", "is", "should"]
+        "types": [
+          "boolean"
+        ],
+        "format": [
+          "PascalCase"
+        ],
+        "prefix": [
+          "can",
+          "has",
+          "is",
+          "should"
+        ]
       }
     ],
     "import/extensions": [
@@ -55,6 +72,12 @@
         "scss": "always"
       }
     ],
+    "rules": {
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ]
+    },
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/strict-boolean-expressions": "warn"

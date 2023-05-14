@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
-import 'aos/dist/aos.css';
+// import './index.css';
+// import 'aos/dist/aos.css';
 
 import { RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
@@ -24,9 +24,8 @@ import { bsc, polygonMumbai } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
-import '@rainbow-me/rainbowkit/styles.css';
-
-import 'react-toastify/dist/ReactToastify.min.css';
+// import '@rainbow-me/rainbowkit/styles.css';
+// import 'react-toastify/dist/ReactToastify.min.css';
 import { isTest } from './config/test';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

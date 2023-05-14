@@ -15,8 +15,6 @@ import './config/i18n';
 import { Staking } from './pages/staking';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
-import 'react-responsive-modal/styles.css';
-
 function App() {
   return (
     <Suspense fallback={<>Loading</>}>
@@ -26,9 +24,9 @@ function App() {
             <Routes>
               <Route path={PUBLIC_ROUTES.default} element={<Home />} />
               <Route path={PUBLIC_ROUTES.home} element={<Home />} />
-              <Route path={PUBLIC_ROUTES.token} element={<Token />} />
-              <Route path={PUBLIC_ROUTES.team} element={<Team />} />
-              <Route path={PUBLIC_ROUTES.staking} element={<Staking />} />
+              <Route path={PUBLIC_ROUTES.game} element={<Token />} />
+              <Route path={PUBLIC_ROUTES.contacts} element={<Team />} />
+              <Route path={PUBLIC_ROUTES.articles} element={<Staking />} />
               <Route path={PUBLIC_ROUTES.privacy} element={<Privacy />} />
               <Route path={PUBLIC_ROUTES.terms} element={<Terms />} />
               <Route path={PUBLIC_ROUTES.error404} element={<NotFoundPage />} />
