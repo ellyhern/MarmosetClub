@@ -1,7 +1,7 @@
 export const PUBLIC_ROUTES = {
   default: '/',
   home: '/home',
-  game: '/game',
+  nft: '/NFT',
   contacts: '/contacts',
   articles: '/articles',
   privacy: '/privacy',

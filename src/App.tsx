@@ -15,6 +15,8 @@ import './config/i18n';
 import { Staking } from './pages/staking';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
+import { CustomConnectButton } from "./components/sections/MComonents/walletConnect";
+import '@rainbow-me/rainbowkit/styles.css';
 function App() {
   return (
     <Suspense fallback={<>Loading</>}>
@@ -24,7 +26,7 @@ function App() {
             <Routes>
               <Route path={PUBLIC_ROUTES.default} element={<Home />} />
               <Route path={PUBLIC_ROUTES.home} element={<Home />} />
-              <Route path={PUBLIC_ROUTES.game} element={<Token />} />
+              <Route path={PUBLIC_ROUTES.nft} element={<Token />} />
               <Route path={PUBLIC_ROUTES.contacts} element={<Team />} />
               <Route path={PUBLIC_ROUTES.articles} element={<Staking />} />
               <Route path={PUBLIC_ROUTES.privacy} element={<Privacy />} />
