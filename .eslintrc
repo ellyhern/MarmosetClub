@@ -72,12 +72,6 @@
         "scss": "always"
       }
     ],
-    "rules": {
-      "comma-dangle": [
-        "error",
-        "always-multiline"
-      ]
-    },
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/strict-boolean-expressions": "warn"
