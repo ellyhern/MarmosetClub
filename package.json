@@ -53,7 +53,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --prefix devit",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts .",
@@ -93,5 +93,6 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.11",
     "prettier": "^2.7.1"
-  }
+  },
+  "homepage": "."
 }
