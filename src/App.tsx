@@ -17,27 +17,33 @@ import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
 import { CustomConnectButton } from "./components/sections/MComonents/walletConnect";
 import '@rainbow-me/rainbowkit/styles.css';
+
+import { WalletContextProvider } from "./subwalletcomponents/providers/WalletContextProvider"
 function App() {
   return (
     <Suspense fallback={<>Loading</>}>
+
       <Router>
-        <Provider>
-          <Layout>
-            <Routes>
-              <Route path={PUBLIC_ROUTES.default} element={<Home />} />
-              <Route path={PUBLIC_ROUTES.home} element={<Home />} />
-              <Route path={PUBLIC_ROUTES.nft} element={<Token />} />
-              <Route path={PUBLIC_ROUTES.contacts} element={<Team />} />
-              <Route path={PUBLIC_ROUTES.articles} element={<Staking />} />
-              <Route path={PUBLIC_ROUTES.privacy} element={<Privacy />} />
-              <Route path={PUBLIC_ROUTES.terms} element={<Terms />} />
-              <Route path={PUBLIC_ROUTES.error404} element={<NotFoundPage />} />
-              <Route path="*" element={<Navigate to={PUBLIC_ROUTES.error404} replace />} />
-            </Routes>
-          </Layout>
-        </Provider>
+        <WalletContextProvider>
+          <Provider>
+            <Layout>
+              <Routes>
+                <Route path={PUBLIC_ROUTES.default} element={<Home />} />
+                <Route path={PUBLIC_ROUTES.home} element={<Home />} />
+                <Route path={PUBLIC_ROUTES.nft} element={<Token />} />
+                <Route path={PUBLIC_ROUTES.contacts} element={<Team />} />
+                <Route path={PUBLIC_ROUTES.articles} element={<Staking />} />
+                <Route path={PUBLIC_ROUTES.privacy} element={<Privacy />} />
+                <Route path={PUBLIC_ROUTES.terms} element={<Terms />} />
+                <Route path={PUBLIC_ROUTES.error404} element={<NotFoundPage />} />
+                <Route path="*" element={<Navigate to={PUBLIC_ROUTES.error404} replace />} />
+              </Routes>
+            </Layout>
+          </Provider>
+        </WalletContextProvider>
       </Router>
-    </Suspense>
+
+    </Suspense >
   );
 }
 

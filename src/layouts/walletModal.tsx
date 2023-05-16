@@ -1,4 +1,29 @@
+import React, { useCallback, useContext } from 'react';
+import { getWalletBySource } from '@subwallet/wallet-connect/dotsama/wallets';
+import { getEvmWalletBySource } from '@subwallet/wallet-connect/evm/evmWallets';
+import { useNavigate } from 'react-router-dom';
+import { OpenSelectWallet, WalletContext } from '../subwalletcomponents/contexts';
+import SelectWallet from '../subwalletcomponents/components/SelectWallet';
+
 export const WalletModal = () => {
+  const openSelectWalletContext = useContext(OpenSelectWallet);
+  const walletContext = useContext(WalletContext);
+  const navigate = useNavigate();
+  const onSelectWallet = useCallback(
+    (walletKey: any, walletType: 'substrate' | 'evm' = 'substrate') => {
+
+      if (walletType === 'substrate') {
+        walletContext.setWallet(getWalletBySource(walletKey), walletType);
+        openSelectWalletContext.close();
+        // navigate('/wallet-info');
+      } else {
+        walletContext.setWallet(getEvmWalletBySource(walletKey), walletType);
+        openSelectWalletContext.close();
+        // navigate('/evm-wallet-info');
+      }
+    },
+    [navigate, openSelectWalletContext, walletContext]
+  );
   return (
     <div className="modal modal--auto fade" id="modal-wallet" tabIndex={-1} aria-labelledby="modal-wallet" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
@@ -9,8 +34,8 @@ export const WalletModal = () => {
             <h4 className="modal__title">Connect Wallet</h4>
 
             <p className="modal__text">Choose one of available wallet providers or create a new wallet.</p>
-
-            <a href="#" className="modal__wallet">
+            <SelectWallet onSelectWallet={onSelectWallet} />
+            {/* <a href="#" className="modal__wallet">
               <img src="img/wallet/metamask.svg" alt="" />
               <span>MetaMask</span>
             </a>
@@ -33,7 +58,7 @@ export const WalletModal = () => {
             <a href="#" className="modal__wallet">
               <img src="img/wallet/fortmatic.svg" alt="" />
               <span>Fortmatic</span>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

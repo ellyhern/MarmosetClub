@@ -1,8 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../context/StoreContext';
-import { CustomConnectButton } from "../components/sections/MComonents/walletConnect"
 export const Header = () => {
   const { t, i18n } = useTranslation();
 
@@ -13,8 +11,6 @@ export const Header = () => {
   const [isMobOpen, mobSetOpen] = useState(false);
 
   const { lang, setLang } = useStore();
-
-  const navigate = useNavigate();
 
   const handleClickOutside = (event: React.MouseEvent<HTMLElement>) => {
     if (mbDropRef.current != null && !mbDropRef.current.contains(event.target as any)) {
@@ -32,42 +28,6 @@ export const Header = () => {
   useEffect(() => {
     setLang(lang);
   }, [lang]);
-
-  const LanguageChoose = (e: any) => {
-    let language = e.target.innerHTML;
-    switch (language) {
-      case 'ENGLISH':
-        setLang('ENG');
-        language = 'English';
-        break;
-      case 'ESPAÑOL':
-        setLang('ESP');
-        language = 'Spanish';
-        break;
-      case 'ITALIANO':
-        setLang('ITA');
-        language = 'Italian';
-        break;
-      case 'FRANÇAIS':
-        setLang('FR');
-        language = 'French';
-        break;
-      case 'DEUTSCH':
-        setLang('DE');
-        language = 'German';
-        break;
-      case '中文':
-        setLang('中文');
-        language = 'Chinese';
-        break;
-      default:
-        break;
-    }
-    i18n.changeLanguage(language);
-    deskSetOpen(false);
-    mobSetOpen(false);
-  };
-
   return (
     <>
       {/* <HeaderContent> */}
@@ -114,10 +74,11 @@ export const Header = () => {
                     </a>
                   </li>
                 </ul>
-                <CustomConnectButton />
-                {/* <button type="button" data-bs-toggle="modal" className="header__cta" data-bs-target="#modal-wallet">
+                {/* <CustomConnectButton /> */}
+                <button type="button" data-bs-toggle="modal" style={{ color: "white" }} className="header__cta" data-bs-target="#modal-wallet">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,7H18V6a3,3,0,0,0-3-3H5A3,3,0,0,0,2,6H2V18a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V10A3,3,0,0,0,19,7ZM5,5H15a1,1,0,0,1,1,1V7H5A1,1,0,0,1,5,5ZM20,15H19a1,1,0,0,1,0-2h1Zm0-4H19a3,3,0,0,0,0,6h1v1a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V8.83A3,3,0,0,0,5,9H19a1,1,0,0,1,1,1Z" /></svg>
-                </button> */}
+                  Connect
+                </button>
               </div>
             </div>
           </div>
