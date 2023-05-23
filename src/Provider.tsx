@@ -3,8 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { COLORS, TEXT_SIZE } from './config/config';
 import StoreProvider from './context/StoreContext';
 import { Web3Provider } from './context/Web3Context';
-import { SmoothProvider } from './provider/SmoothScroll';
-
+import 'react-toastify/dist/ReactToastify.css';
 interface ProviderProps {
   children: React.ReactNode;
 }
@@ -15,7 +14,6 @@ const theme = {
 };
 
 export const Provider = ({ children }: ProviderProps) => {
-  const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
   return (
     <ThemeProvider theme={theme}>
       <ToastContainer

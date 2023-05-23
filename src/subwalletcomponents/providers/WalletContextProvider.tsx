@@ -9,7 +9,7 @@ import { EvmWallet, Wallet, WalletAccount } from '@subwallet/wallet-connect/type
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { OpenSelectWallet, WalletContext, WalletContextInterface } from '../contexts';
-
+// import { toast } from 'react-toastify';
 interface Props {
   children: React.ReactElement;
 }
@@ -24,8 +24,12 @@ export function WalletContextProvider({ children }: Props) {
   const afterSelectWallet = useCallback(
     async (wallet: Wallet) => {
       const infos = await wallet.getAccounts();
-
       infos && setAccounts(infos);
+      // if (infos?.length === 0) {
+      //   toast("You don't have any account in" + wallet.extensionName + " wallet! Please create new.", { autoClose: 5000 });
+      // }
+
+      // toast("You are connected to" + wallet.extensionName + " wallet!", { autoClose: 5000 });
     },
     []
   );
@@ -36,8 +40,10 @@ export function WalletContextProvider({ children }: Props) {
 
       await wallet.enable();
       setWalletKey(wallet.extensionName);
-
+      // toast("You are connected to" + wallet.extensionName + " wallet!", { autoClose: 5000 });
       await afterSelectWallet(wallet);
+
+
     },
     [afterSelectWallet, currentWallet, setWalletKey]
   );

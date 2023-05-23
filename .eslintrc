@@ -24,6 +24,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "camelcase": 0,
     "no-console": "off", // Means error
     "default-case": "error",
     "default-case-last": "error",
@@ -40,29 +41,13 @@
       "error",
       "never"
     ],
+    "@typescript-eslint/no-var-requires": 0,
     "linebreak-style": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": "variable",
-        "types": [
-          "boolean"
-        ],
-        "format": [
-          "PascalCase"
-        ],
-        "prefix": [
-          "can",
-          "has",
-          "is",
-          "should"
-        ]
-      }
-    ],
+    "@typescript-eslint/naming-convention": "off",
     "import/extensions": [
       "error",
       "never",

@@ -46,7 +46,7 @@ const connectors = connectorsForWallets([
     wallets: [
       metaMaskWallet({ chains, shimDisconnect: true }),
       trustWallet({ chains, shimDisconnect: true }),
-      coinbaseWallet({ appName: 'King', chains })
+      coinbaseWallet({ appName: 'Marmoset', chains })
     ]
   },
   {
@@ -77,7 +77,7 @@ root.render(
       chains={chains}
       showRecentTransactions
       appInfo={{
-        appName: 'Kingworld'
+        appName: 'MarmosetClub'
       }}
     >
       <React.StrictMode>

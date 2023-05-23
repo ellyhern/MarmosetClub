@@ -24,7 +24,8 @@
   "include": [
     "src",
     "src/js",
-    "js"
+    "js",
+    "client.js"
   ],
   "exclude": [
     "node_modules"

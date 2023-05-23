@@ -1,255 +1,77 @@
 import { NFTNode } from "./MComonents/nftNode";
+import { clientAPI, APICall } from "../../utils/client";
+import React, { useEffect, useState } from "react";
+import { getCloudFlareImage } from "../../utils";
 export const Section = () => {
-    const nftdata = [
-        {
-            "gameCover": "img/games/1.png",
-            "gameName": "Tank Metaverse",
-            "gameBlockchain": {
-                title: "Blockchains",
-                img: [
-                    {
-                        src: "img/blockchain/1.png",
-                        alt: "BNB"
-                    },
-                    {
-                        src: "img/blockchain/2.png",
-                        alt: "Avalanche"
+
+    const [owner, setOwner] = useState(null);
+    const [loading, setLoading] = useState(null);
+    const [filterSelected, setFilterSelected] = useState("COLLECTED");
+    const [myCollections, setMyCollections] = useState<any>([]);
+
+    useEffect(() => {
+
+        async function name() {
+            const allCollectionsOwned = await clientAPI("post", "/getCollections", {
+                limit: 10000,
+                offset: 0,
+                sort: -1,
+                isActive: true
+            });
+            let currentAccount: any;
+            const walletmarmoset = window.localStorage.getItem("marmoset");
+            if (walletmarmoset && walletmarmoset?.length > 3) {
+                currentAccount = JSON.parse(walletmarmoset);
+            }
+
+            let data = await Promise.all(
+
+                allCollectionsOwned?.map(async (collection: any) => {
+                    const options = {
+                        collection_address: collection.nftContractAddress,
+                        owner: currentAccount?.address,
+                        limit: 10000,
+                        offset: 0,
+                        sort: -1
+                    };
+
+                    let { ret: dataList } = await APICall.getNFTsByOwnerAndCollection(options);
+
+                    if (filterSelected === "COLLECTED") {
+                        dataList = dataList.filter((item: any) => item.is_for_sale !== true);
                     }
-                ]
-            },
-            "gameDescription": "Uncover the secrets of a long-forgotten civilization, piecing together clues and solving puzzles to uncover ancient artifacts.",
-            "gameList": [
-                { after: "Devices", before: "Web, Android, IOS" },
-                { after: "Free to Play", before: "NFT Required" },
-                { after: "Play to Earn", before: "Crypto" },
-                { after: "Status", before: "Presale" }
-            ]
-        },
-        {
-            "gameCover": "img/games/2.png",
-            "gameName": "Synergy Land",
-            "gameBlockchain": {
-                title: "Blockchains",
-                img: [
-                    {
-                        src: "img/blockchain/4.png",
-                        alt: "Flow"
+
+                    if (filterSelected === "LISTING") {
+                        dataList = dataList.filter((item: any) => item.is_for_sale === true);
                     }
-                ]
-            },
-            "gameDescription": "Fight against hordes of zombies and other undead monsters in a post-apocalyptic world.",
-            "gameList": [
-                { after: "Devices", before: "Windows, MAC, Linux" },
-                { after: "Free to Play", before: "Yes" },
-                { after: "Play to Earn", before: "NFT & Crypto" },
-                { after: "Status", before: "Live" }
-            ]
-        },
-        {
-            "gameCover": "img/games/3.png",
-            "gameName": "Space Falcon",
-            "gameBlockchain": {
-                "title": "Blockchains",
-                "img": [
-                    {
-                        "src": "img/blockchain/3.png",
-                        "alt": "Ethereum"
-                    },
-                    {
-                        "src": "img/blockchain/5.png",
-                        "alt": "Hive"
-                    }
-                ]
-            },
-            "gameDescription": "Dive into the depths of the ocean, discovering exotic creatures and uncovering sunken treasures.",
-            "gameList": [
-                { "after": "Devices", "before": "Android, IOS, Windows, MAC" },
-                { "after": "Free to play", "before": "Yes" },
-                { "after": "Play to earn", "before": "NFT" },
-                { "after": "Status", "before": "Alpha" }
-            ]
-        },
-        {
-            "gameCover": "img/games/4.png",
-            "gameName": "Battle Arena",
-            "gameBlockchain": {
-                "title": "Blockchain",
-                "img": [
-                    {
-                        "src": "img/blockchain/6.png",
-                        "alt": "Polygon"
-                    }
-                ]
-            },
-            "gameDescription": "Lead your army of powerful robots into battle against other players, using strategy and cunning to emerge victorious.",
-            "gameList": [
-                { "after": "Devices", "before": "Android, Windows" },
-                { "after": "Free to play", "before": "Yes" },
-                { "after": "Play to earn", "before": "NFT & Crypto" },
-                { "after": "Status", "before": "Live" }
-            ]
-        },
-        {
-            "gameCover": "img/games/5.png",
-            "gameName": "Open Era",
-            "gameBlockchain": {
-                "title": "Blockchains",
-                "img": [
-                    {
-                        "src": "img/blockchain/3.png",
-                        "alt": "Ethereum"
-                    },
-                    {
-                        "src": "img/blockchain/7.png",
-                        "alt": "Solana"
-                    }
-                ]
-            },
-            "gameDescription": "Race through futuristic cityscapes at breakneck speeds, dodging obstacles and outmaneuvering your opponents.",
-            "gameList": [
-                { "after": "Devices", "before": "Web, Android, IOS" },
-                { "after": "Free to play", "before": "NFT Required" },
-                { "after": "Play to earn", "before": "Crypto" },
-                { "after": "Status", "before": "Beta" }
-            ]
-        },
-        {
-            "gameCover": "img/games/6.png",
-            "gameName": "Immortal Arena",
-            "gameBlockchain": {
-                "title": "Blockchains",
-                "img": [
-                    {
-                        "src": "img/blockchain/1.png",
-                        "alt": "BNB"
-                    },
-                    {
-                        "src": "img/blockchain/4.png",
-                        "alt": "Flow"
-                    }
-                ]
-            },
-            "gameDescription": "Explore a vast, procedurally generated universe filled with alien worlds, ancient ruins, and hostile forces.",
-            "gameList": [
-                { "after": "Devices", "before": "Web" },
-                { "after": "Free to play", "before": "Yes" },
-                { "after": "Play to earn", "before": "NFT" },
-                { "after": "Status", "before": "Development" }
-            ]
-        },
-        {
-            "gameCover": "img/games/7.png",
-            "gameName": "Monster NFT",
-            "gameBlockchain": {
-                "title": "Blockchains",
-                "img": [
-                    {
-                        "src": "img/blockchain/1.png",
-                        "alt": "BNB"
-                    },
-                    {
-                        "src": "img/blockchain/7.png",
-                        "alt": "Solana"
-                    }
-                ]
-            },
-            "gameDescription": "Journey through classic fairy tales, solving puzzles and battling mythical creatures to save the day.",
-            "gameList": [
-                { "after": "Devices", "before": "Web, Android, IOS" },
-                { "after": "Free to play", "before": "NFT Required" },
-                { "after": "Play to earn", "before": "Crypto" },
-                { "after": "Status", "before": "Presale" }
-            ]
-        },
-        {
-            "gameCover": "img/games/8.png",
-            "gameName": "X World Games",
-            "gameBlockchain": {
-                "title": "Blockchain",
-                "img": [
-                    { "src": "img/blockchain/5.png", "alt": "Hive" }
-                ]
-            },
-            "gameDescription": "Soar through the clouds on a magical airship, facing off against sky pirates and other aerial threats.",
-            "gameList": [
-                { "after": "Devices", "before": "Windows, MAC, Linux" },
-                { "after": "Free to play", "before": "Yes" },
-                { "after": "Play to earn", "before": "NFT & Crypto" },
-                { "after": "Status", "before": "Live" }
-            ]
-        },
-        {
-            "gameCover": "img/games/9.png",
-            "gameName": "Gunstar Metaverse",
-            "gameBlockchain": {
-                "title": "Blockchains",
-                "img": [
-                    { "src": "img/blockchain/4.png", "alt": "Flow" },
-                    { "src": "img/blockchain/6.png", "alt": "Polygon" }
-                ]
-            },
-            "gameDescription": "Lead a band of rogue robots in a fight against their human oppressors, using tactics and strategy to win the war.",
-            "gameList": [
-                { "after": "Devices", "before": "Android, IOS, Windows, MAC" },
-                { "after": "Free to play", "before": "Yes" },
-                { "after": "Play to earn", "before": "NFT" },
-                { "after": "Status", "before": "Alpha" }
-            ]
-        },
-        {
-            "gameCover": "img/games/10.png",
-            "gameName": "Titan Hunters",
-            "gameBlockchain": {
-                "title": "Blockchain",
-                "img": [
-                    { "src": "img/blockchain/1.png", "alt": "BNB" }
-                ]
-            },
-            "gameDescription": "Navigate a dense forest filled with dangerous predators and hidden secrets, all while searching for a way home.",
-            "gameList": [
-                { "after": "Devices", "before": "Android, Windows" },
-                { "after": "Free to play", "before": "Yes" },
-                { "after": "Play to earn", "before": "NFT & Crypto" },
-                { "after": "Status", "before": "Live" }
-            ]
-        },
-        {
-            "gameCover": "img/games/11.png",
-            "gameName": "MetaSoccer",
-            "gameBlockchain": {
-                "title": "Blockchains",
-                "img": [
-                    { "src": "img/blockchain/4.png", "alt": "Flow" },
-                    { "src": "img/blockchain/5.png", "alt": "Hive" }
-                ]
-            },
-            "gameDescription": "Build and manage your own medieval kingdom, recruiting armies and engaging in epic battles against rival lords.",
-            "gameList": [
-                { "after": "Devices", "before": "Web, Android, IOS" },
-                { "after": "Free to play", "before": "NFT Required", "class": "required" },
-                { "after": "Play to earn", "before": "Crypto", "class": "required" },
-                { "after": "Status", "before": "Beta", "class": "process" }
-            ]
-        },
-        {
-            "gameCover": "img/games/12.png",
-            "gameName": "Realms Of Ethernity",
-            "gameBlockchain": {
-                "title": "Blockchains",
-                "img": [
-                    { "src": "img/blockchain/2.png", "alt": "Avalanche" },
-                    { "src": "img/blockchain/6.png", "alt": "Polygon" }
-                ]
-            },
-            "gameDescription": "Scavenge through abandoned space stations and derelict spacecraft, salvaging valuable resources and evading space pirates.",
-            "gameList": [
-                { "after": "Devices", "before": "Web" },
-                { "after": "Free to play", "before": "Yes", "class": "true" },
-                { "after": "Play to earn", "before": "NFT", "class": "required" },
-                { "after": "Status", "before": "Development", "class": "process" }
-            ]
+
+                    const data = dataList?.map((item: any) => {
+                        return { ...item, stakeStatus: 0 };
+                    });
+
+                    collection.listNFT = data;
+
+                    return collection;
+                })
+            );
+            data = data.filter((item) => item.listNFT?.length > 0);
+            // const nftDatalist: any[] = [];
+            // data[0].listNFT.forEach(async (nftdd: any) => {
+            //     const res = await getCloudFlareImage(nftdd.avatar, 500);
+            //     nftdd.avatarUrl = res;
+            //     nftDatalist.push(nftdd); // Push the updated nftdd object to the nftDatalist array
+            // });
+
+            setMyCollections(data[0].listNFT);
         }
-    ]
+        name();
+
+
+    }, []);
+    useEffect(() => {
+        console.log(myCollections);
+    }, [myCollections]);
+
     return (
         <section className="section">
             <div className="filter filter--home">
@@ -306,9 +128,11 @@ export const Section = () => {
             </div>
             <div className="container">
                 <div className="row">
-
+                    {/* <img src={myCollections} width={500} height={500} /> */}
                     {
-                        nftdata.map((nft, index) => {
+                        myCollections.map((nft: any, index: number) => {
+                            // console.log(nft);
+                            // return (<h1 key={index}>{nft.nftName}</h1>);
                             return (<NFTNode data={nft} key={index} />);
                         })
                     }

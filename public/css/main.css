@@ -67,6 +67,47 @@ body {
   height: 100%;
 }
 
+.wallet-info-page {
+  padding: 50px 8px;
+}
+
+.wallet-info-page__text {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 500;
+  padding-bottom: 16px;
+}
+
+.wallet-info-page {
+  color: white;
+}
+
+.account-list {
+  margin-bottom: 10px;
+}
+
+.account-item .info {
+  margin-bottom: 15px;
+}
+
+.account-item__content {
+  padding-left: 10px;
+  color: #747474;
+}
+
+.boxed-container {
+  display: grid;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 81px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  max-width: 630px;
+  height: 70vh;
+}
+
 body {
   font-family: 'Mulish', sans-serif !important;
   font-weight: 400 !important;
@@ -85,7 +126,9 @@ button {
 }
 
 
-
+.cls-1 {
+  fill: #182026;
+}
 
 button:focus {
   outline: none;
@@ -3808,7 +3851,7 @@ ul {
 
 .game__head {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
@@ -3820,8 +3863,8 @@ ul {
   justify-content: center;
   align-items: center;
   background-color: #141a2a;
-  width: 70px;
-  height: 70px;
+  width: 100%;
+  height: 300px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -3884,7 +3927,7 @@ ul {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  width: 100%;
+  width: 90%;
   font-size: 16px;
   line-height: 26px;
   color: #fff;
@@ -4302,6 +4345,10 @@ ul {
   font-weight: 400;
   margin-bottom: 0;
   width: 100%;
+}
+
+.hfont {
+  font-size: 16px !important;
 }
 
 .post__title a {
@@ -7134,6 +7181,12 @@ ul {
 }
 
 .wallet-item .wallet-logo {
+  width: 32px;
+  height: 32px;
+  margin: 6px 2px 6px 8px;
+}
+
+.wallet-logo-header {
   width: 32px;
   height: 32px;
   margin: 6px 2px 6px 8px;

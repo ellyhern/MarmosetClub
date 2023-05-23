@@ -4,7 +4,7 @@
 import { getWallets } from '@subwallet/wallet-connect/dotsama/wallets';
 import { getEvmWallets } from '@subwallet/wallet-connect/evm/evmWallets';
 import { EvmWallet, Wallet } from '@subwallet/wallet-connect/types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 interface Props {
   onSelectWallet: (walletKey: string, walletType?: 'substrate' | 'evm') => void
@@ -14,11 +14,14 @@ function SelectWallet({ onSelectWallet }: Props): React.ReactElement<Props> {
   const dotsamaWallets = getWallets();
   const evmWallets = getEvmWallets();
 
+  useEffect(() => {
+    console.log(dotsamaWallets);
+  }, [dotsamaWallets]);
+
   const onClickDotsamaWallet = useCallback(
     (wallet: Wallet | EvmWallet) => {
       return () => {
         if (wallet.installed) {
-
           onSelectWallet(wallet.extensionName);
         }
       };

@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 export const Section3 = () => {
     const data = [
         {
@@ -32,7 +34,16 @@ export const Section3 = () => {
             "imgsrc": "img/sponsors/logo8.svg",
             "title": "thesponsor.com"
         }
-    ]
+    ];
+
+    const [aboutData, setAboutData] = useState({ title: "", text: "" });
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/about-data-one").then((res) => {
+            console.log(res);
+            setAboutData(res.data);
+        }).catch();
+    }, []);
     return (
         <section className="section">
             <div className="container">
@@ -40,9 +51,9 @@ export const Section3 = () => {
                     <div className="col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 align-self-center">
                         <div className="section__title section__title--grid-right">
                             <strong>Become a partner</strong>
-                            <h2>Welcome to the Marmoset Club!</h2>
-                            <p>Each NFT includes a one-time access pass to our Telegram and Discord groups, which will allow you to interact with other members and enjoy our exclusive content. Once inside, you’ll be surrounded by passionate and creative individuals who share your interests and are willing to collaborate on exciting projects.</p>
-                            <p>If you already have an invitation and acquire one of the 1000 NFTs, you’ll have the opportunity to invite someone of your choosing to join our exclusive community. This is a way to share the Marmoset Club experience with others who may be interested.</p>
+                            <h2 style={{ width: "500px", wordWrap: "break-word" }}>{aboutData.title}</h2>
+                            <p style={{ width: "520px", wordWrap: "break-word" }}>{aboutData.text}</p>
+
                             <a href="/contacts" className="section__btn section__btn--grid"><span>Become</span></a>
                         </div>
                     </div>

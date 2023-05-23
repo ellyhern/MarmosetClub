@@ -6,6 +6,7 @@ export const PUBLIC_ROUTES = {
   articles: '/articles',
   privacy: '/privacy',
   terms: '/terms',
+  walletinfo:"/wallet-info",
   error404: '/error404'
 };
 

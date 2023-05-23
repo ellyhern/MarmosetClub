@@ -1,6 +1,8 @@
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { SlideNode } from "./MComonents/slideNode";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 const responsive = {
     superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -22,7 +24,7 @@ const responsive = {
 };
 
 export const Hero = () => {
-    const slidedata = [
+    const [slidedata, setSlideData] = useState([
         {
             "heroTitle": "Realms Of Ethernity",
             "heroText": "Each NFT includes a one-time access pass to our Telegram and Discord groups, which will allow you to interact with other members and enjoy our exclusive content.",
@@ -50,7 +52,14 @@ export const Hero = () => {
             "playtoearn": "Crypto",
             "Status": "Presale"
         }
-    ]
+    ]);
+    useEffect(() => {
+        console.log("freetoplay ");
+        axios.post("http://localhost:5000/api/carousel-data").then((res) => {
+            // console.log(res);
+            setSlideData(res.data);
+        }).catch();
+    }, []);
     return (
         <section className="hero" id="hero">
             <div className="container">
@@ -98,7 +107,6 @@ export const Hero = () => {
                                 />
                             </div>
                         </div>
-
                     </div>
                 </div>
 

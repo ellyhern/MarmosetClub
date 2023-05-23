@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 // Copyright 2019-2022 @subwallet/sub-connect authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-// eslint-disable-next-line header/header
 // import { EditOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
 import React, { useCallback, useContext } from 'react';
@@ -10,23 +9,25 @@ import { WalletContext } from '../contexts';
 
 // require('./AccountList.scss');
 
-function AccountList(): React.ReactElement {
+function AccountList(props: any): React.ReactElement {
   const walletContext = useContext(WalletContext);
 
   const signDummy = useCallback(
-    (address: string) => {
+    (address: string, name: string) => {
       const signer = walletContext.wallet?.signer;
 
-      if (signer && signer.signRaw) {
+      if ((signer?.signRaw)) {
         const signPromise = signer.signRaw({ address, data: 'This is dummy message', type: 'bytes' });
         const key = 'sign-status';
 
         message.loading({ content: 'Signing', key });
         signPromise.then((rs: any) => {
+          props.setWallet({ address, name });
+          window.localStorage.setItem("marmoset", JSON.stringify({ address, name }));
           // message.success({ content: 'Sign Successfully!', key });
         }).catch((error) => {
           console.error(error);
-          // message.warn({ content: 'Sign Failed or Cancelled!', key });
+          // message?.warn({ content: 'Sign Failed or Cancelled!', key });
         });
       }
     },
@@ -34,9 +35,9 @@ function AccountList(): React.ReactElement {
   );
 
   const onSignClicked = useCallback(
-    (address: string) => {
+    (ac: any) => {
       return () => {
-        signDummy(address);
+        signDummy(ac.address, ac.name);
       };
     },
     [signDummy]
@@ -62,7 +63,7 @@ function AccountList(): React.ReactElement {
           <Button
             className='sub-wallet-btn sub-wallet-sign-btn'
             key={acc.address}
-            onClick={onSignClicked(acc.address)}
+            onClick={onSignClicked(acc)}
             type={'primary'}
           >
             Sign Dummy
