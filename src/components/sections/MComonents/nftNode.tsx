@@ -5,7 +5,7 @@ interface NFTdataProps {
     key: number;
 }
 export const NFTNode = ({ data, key }: NFTdataProps) => {
-    console.log(data);
+    // console.log(data);
     const [nftdata, setNftData] = useState<any>({});
     useEffect(() => {
         getCloudFlareImage(data.avatar, 500).then((res) => {

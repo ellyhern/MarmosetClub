@@ -5,15 +5,12 @@ import { Provider } from './Provider';
 import { Home } from './pages/home';
 import { NotFoundPage } from './pages/404';
 import { Token } from './pages/token';
-import { Team } from './pages/team';
+import { Verify } from './pages/verify';
 import { Layout } from 'src/layouts/layout';
 import './config/i18n';
 import WalletInfo from './subwalletcomponents/WalletInfo';
-import { Privacy } from './pages/Privacy';
-import { Terms } from './pages/Terms';
 import '@rainbow-me/rainbowkit/styles.css';
 import { WalletContextProvider } from "./subwalletcomponents/providers/WalletContextProvider";
-// import { SubstrateContextProvider } from "./utils/substrate";
 function App() {
   const [currentWallet, setCurrentWallet] = useState({ name: "", address: "" });
   return (
@@ -21,15 +18,16 @@ function App() {
       {/* <SubstrateContextProvider> */}
       <WalletContextProvider>
         <Provider>
-          <Layout currentWallet={currentWallet} >
+          <Layout currentWallet={currentWallet}
+            setWallet={(data: any) => setCurrentWallet(data)}>
             <Routes>
-              <Route path={PUBLIC_ROUTES.default} element={<Home />} />
+              <Route path={PUBLIC_ROUTES.default} element={<Home currentWallet={currentWallet} />} />
               <Route path={PUBLIC_ROUTES.home} element={<Home />} />
               <Route path={PUBLIC_ROUTES.nft} element={<Token />} />
-              <Route path={PUBLIC_ROUTES.contacts} element={<Team />} />
+              <Route path={PUBLIC_ROUTES.verify} element={<Verify />} />
               <Route path={PUBLIC_ROUTES.walletinfo} element={<WalletInfo setWallet={(data: any) => setCurrentWallet(data)} />} />
-              <Route path={PUBLIC_ROUTES.privacy} element={<Privacy />} />
-              <Route path={PUBLIC_ROUTES.terms} element={<Terms />} />
+              {/* <Route path={PUBLIC_ROUTES.privacy} element={<Privacy />} />
+              <Route path={PUBLIC_ROUTES.terms} element={<Terms />} /> */}
               <Route path={PUBLIC_ROUTES.error404} element={<NotFoundPage />} />
             </Routes>
           </Layout>

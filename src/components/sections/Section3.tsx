@@ -39,7 +39,7 @@ export const Section3 = () => {
     const [aboutData, setAboutData] = useState({ title: "", text: "" });
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/about-data-one").then((res) => {
+        axios.get("/api/about-data-one").then((res) => {
             console.log(res);
             setAboutData(res.data);
         }).catch();
@@ -54,7 +54,7 @@ export const Section3 = () => {
                             <h2 style={{ width: "500px", wordWrap: "break-word" }}>{aboutData.title}</h2>
                             <p style={{ width: "520px", wordWrap: "break-word" }}>{aboutData.text}</p>
 
-                            <a href="/contacts" className="section__btn section__btn--grid"><span>Become</span></a>
+                            <a href="/verify" className="section__btn section__btn--grid"><span>Become</span></a>
                         </div>
                     </div>
                     <div className="col-12 col-lg-6 align-self-center">

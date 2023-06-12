@@ -2,10 +2,9 @@ import { NFTNode } from "./MComonents/nftNode";
 import { clientAPI, APICall } from "../../utils/client";
 import React, { useEffect, useState } from "react";
 import { getCloudFlareImage } from "../../utils";
-export const Section = () => {
+import { WalletContext } from '../../subwalletcomponents/contexts';
+export const Section = (props: any) => {
 
-    const [owner, setOwner] = useState(null);
-    const [loading, setLoading] = useState(null);
     const [filterSelected, setFilterSelected] = useState("COLLECTED");
     const [myCollections, setMyCollections] = useState<any>([]);
 
@@ -25,7 +24,6 @@ export const Section = () => {
             }
 
             let data = await Promise.all(
-
                 allCollectionsOwned?.map(async (collection: any) => {
                     const options = {
                         collection_address: collection.nftContractAddress,
@@ -55,22 +53,16 @@ export const Section = () => {
                 })
             );
             data = data.filter((item) => item.listNFT?.length > 0);
-            // const nftDatalist: any[] = [];
-            // data[0].listNFT.forEach(async (nftdd: any) => {
-            //     const res = await getCloudFlareImage(nftdd.avatar, 500);
-            //     nftdd.avatarUrl = res;
-            //     nftDatalist.push(nftdd); // Push the updated nftdd object to the nftDatalist array
-            // });
-
-            setMyCollections(data[0].listNFT);
+            if (data.length > 0)
+                setMyCollections(data[0].listNFT);
+            else setMyCollections([]);
         }
         name();
+    }, [props.currentWallet]);
 
+    // useEffect(() => {
 
-    }, []);
-    useEffect(() => {
-        console.log(myCollections);
-    }, [myCollections]);
+    // }, [myCollections]);
 
     return (
         <section className="section">
@@ -120,7 +112,7 @@ export const Section = () => {
                                     </select>
                                 </div>
                                 <button className="filter__menu" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,2H5A3,3,0,0,0,2,5V6.17a3,3,0,0,0,.25,1.2l0,.06a2.81,2.81,0,0,0,.59.86L9,14.41V21a1,1,0,0,0,.47.85A1,1,0,0,0,10,22a1,1,0,0,0,.45-.11l4-2A1,1,0,0,0,15,19V14.41l6.12-6.12a2.81,2.81,0,0,0,.59-.86l0-.06A3,3,0,0,0,22,6.17V5A3,3,0,0,0,19,2ZM13.29,13.29A1,1,0,0,0,13,14v4.38l-2,1V14a1,1,0,0,0-.29-.71L5.41,8H18.59ZM20,6H4V5A1,1,0,0,1,5,4H19a1,1,0,0,1,1,1Z"></path></svg>Filter</button>
-                                <span className="filter__amount">Showing 12 of 169</span>
+                                <span className="filter__amount">Showing 1 of 1</span>
                             </div>
                         </div>
                     </div>
@@ -131,8 +123,6 @@ export const Section = () => {
                     {/* <img src={myCollections} width={500} height={500} /> */}
                     {
                         myCollections.map((nft: any, index: number) => {
-                            // console.log(nft);
-                            // return (<h1 key={index}>{nft.nftName}</h1>);
                             return (<NFTNode data={nft} key={index} />);
                         })
                     }

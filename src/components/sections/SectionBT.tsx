@@ -4,7 +4,7 @@ export const SectionBT = () => {
     const [staff, setStaff] = useState([]);
     useEffect(() => {
 
-        axios.get("http://localhost:5000/api//staff-data")
+        axios.get("/api/staff-data")
             .then((res) => {
                 // console.log(res.data);
                 setStaff(res.data);

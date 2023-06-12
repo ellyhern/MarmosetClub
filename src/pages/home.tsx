@@ -9,7 +9,7 @@ import { Section } from 'src/components/sections/Section';
 import { SectionLight } from 'src/components/sections/SectionLight';
 import { Section3 } from 'src/components/sections/Section3';
 import { SectionBT } from 'src/components/sections/SectionBT';
-export const Home = () => {
+export const Home = (props: any) => {
   return (
     <>
       {/* <PageWrapper>
@@ -24,7 +24,7 @@ export const Home = () => {
         </Container>
       </PageWrapper> */}
       <Hero />
-      <Section />
+      <Section  {...props} />
       <SectionLight />
       <Section3 />
       <SectionBT />

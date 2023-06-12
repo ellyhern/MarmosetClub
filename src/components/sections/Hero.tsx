@@ -54,8 +54,7 @@ export const Hero = () => {
         }
     ]);
     useEffect(() => {
-        console.log("freetoplay ");
-        axios.post("http://localhost:5000/api/carousel-data").then((res) => {
+        axios.post("/api/carousel-data").then((res) => {
             // console.log(res);
             setSlideData(res.data);
         }).catch();
