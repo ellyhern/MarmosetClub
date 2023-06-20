@@ -76,8 +76,8 @@ export const Hero = () => {
                                             autoPlay
                                             autoPlayControls
                                             autoPlayStrategy="none"
-                                            autoPlayInterval={3000}
-                                            animationDuration={1000}
+                                            autoPlayInterval={8000}
+                                            animationDuration={2000}
                                             animationType="slide"
                                             infinite
                                             touchTracking={false}

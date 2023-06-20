@@ -41,11 +41,7 @@ export const Verify = () => {
         toastr.success(message);
       else if (flg === "error") toastr.error(message);
 
-      setVeri({
-        discord: "",
-        telegram: "",
-        wallet: ""
-      });
+      setVeri((prevState) => ({ ...prevState, discord: "", telegram: "" }));
     }).catch();
   }
 
