@@ -17,6 +17,10 @@ export const Verify = () => {
     if (wallet !== null) {
       const walletInfo = JSON.parse(wallet);
       setVeri((prevState) => ({ ...prevState, wallet: walletInfo?.address }));
+      axios.post("/api/getUserByWallet", { wallet: walletInfo?.address }).then((res) => {
+        const { discord, telegram } = res.data;
+        setVeri((prevState) => ({ ...prevState, discord, telegram }));
+      }).catch();
     }
     else {
       console.log("connect wallet");
@@ -26,9 +30,19 @@ export const Verify = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+
+    const discordReg = /^.+#\d{4}$/;
+    const telegramReg = /^@[A-Za-z0-9_]{5,32}$/;
+    const polkadotReg = /^[\w]{47,48}$/;
+    if (!discordReg.test(veri.discord))
+      return toastr.error("Discord address is not valid");
+    if (!telegramReg.test(veri.telegram))
+      return toastr.error("Telegram address is not valid");
+    if (!polkadotReg.test(veri.wallet))
+      return toastr.error("Wallet address is not valid or You are not connected to Polkadot wallet.");
+
     axios.post("/api/user-verify", veri).then((res) => {
       console.log(res.data.message);
-
       toastr.options = {
         // positionClass: 'toast-top-full-width',
         hideDuration: 300,
@@ -41,7 +55,8 @@ export const Verify = () => {
         toastr.success(message);
       else if (flg === "error") toastr.error(message);
 
-      setVeri((prevState) => ({ ...prevState, discord: "", telegram: "" }));
+      const { discord, telegram } = res.data;
+      setVeri((prevState) => ({ ...prevState, discord, telegram }));
     }).catch();
   }
 

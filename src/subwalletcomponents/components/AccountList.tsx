@@ -4,7 +4,8 @@
 // import { EditOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
 import React, { useCallback, useContext } from 'react';
-
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 import { WalletContext } from '../contexts';
 
 // require('./AccountList.scss');
@@ -22,9 +23,8 @@ function AccountList(props: any): React.ReactElement {
 
         message.loading({ content: 'Signing', key });
         signPromise.then((rs: any) => {
-          props.setWallet({ address, name });
           window.localStorage.setItem("marmoset", JSON.stringify({ address, name }));
-          // message.success({ content: 'Sign Successfully!', key });
+          toastr.success(`${name} Wallet Connected Successfully!`);
         }).catch((error) => {
           console.error(error);
           // message?.warn({ content: 'Sign Failed or Cancelled!', key });

@@ -1,69 +1,70 @@
 import { NFTNode } from "./MComonents/nftNode";
 import { clientAPI, APICall } from "../../utils/client";
 import React, { useEffect, useState } from "react";
-import { getCloudFlareImage } from "../../utils";
-import { WalletContext } from '../../subwalletcomponents/contexts';
+import { useDispatch, useSelector } from 'react-redux';
+
 export const Section = (props: any) => {
 
     const [filterSelected, setFilterSelected] = useState("COLLECTED");
     const [myCollections, setMyCollections] = useState<any>([]);
-
-    useEffect(() => {
-
-        async function name() {
-            const allCollectionsOwned = await clientAPI("post", "/getCollections", {
-                limit: 10000,
-                offset: 0,
-                sort: -1,
-                isActive: true
-            });
-            let currentAccount: any;
-            const walletmarmoset = window.localStorage.getItem("marmoset");
-            if (walletmarmoset && walletmarmoset?.length > 3) {
-                currentAccount = JSON.parse(walletmarmoset);
-            }
-
-            let data = await Promise.all(
-                allCollectionsOwned?.map(async (collection: any) => {
-                    const options = {
-                        collection_address: collection.nftContractAddress,
-                        owner: currentAccount?.address,
-                        limit: 10000,
-                        offset: 0,
-                        sort: -1
-                    };
-
-                    let { ret: dataList } = await APICall.getNFTsByOwnerAndCollection(options);
-
-                    if (filterSelected === "COLLECTED") {
-                        dataList = dataList.filter((item: any) => item.is_for_sale !== true);
-                    }
-
-                    if (filterSelected === "LISTING") {
-                        dataList = dataList.filter((item: any) => item.is_for_sale === true);
-                    }
-
-                    const data = dataList?.map((item: any) => {
-                        return { ...item, stakeStatus: 0 };
-                    });
-
-                    collection.listNFT = data;
-
-                    return collection;
-                })
-            );
-            data = data.filter((item) => item.listNFT?.length > 0);
-            if (data.length > 0)
-                setMyCollections(data[0].listNFT);
-            else setMyCollections([]);
+    const stateData = useSelector((state: any) => state);
+    async function name() {
+        let arr = [];
+        const allCollectionsOwned = await clientAPI("post", "/getCollections", {
+            limit: 10000,
+            offset: 0,
+            sort: -1,
+            isActive: true
+        });
+        let currentAccount: any;
+        const walletmarmoset = window.localStorage.getItem("marmoset");
+        if (walletmarmoset && walletmarmoset?.length > 3) {
+            currentAccount = JSON.parse(walletmarmoset);
         }
-        name();
-    }, [props.currentWallet]);
 
-    // useEffect(() => {
+        let data = await Promise.all(
+            allCollectionsOwned?.map(async (collection: any) => {
+                const options = {
+                    collection_address: collection.nftContractAddress,
+                    owner: currentAccount?.address,
+                    limit: 10000,
+                    offset: 0,
+                    sort: -1
+                };
 
-    // }, [myCollections]);
+                let { ret: dataList } = await APICall.getNFTsByOwnerAndCollection(options);
 
+                if (filterSelected === "COLLECTED") {
+                    dataList = dataList.filter((item: any) => item.is_for_sale !== true);
+                }
+
+                if (filterSelected === "LISTING") {
+                    dataList = dataList.filter((item: any) => item.is_for_sale === true);
+                }
+
+                const data = dataList?.map((item: any) => {
+                    return { ...item, stakeStatus: 0 };
+                });
+
+                collection.listNFT = data;
+
+                return collection;
+            })
+        );
+        data = data.filter((item) => item.listNFT?.length > 0);
+
+        if (data.length > 0) {
+            arr = data[0].listNFT;
+            setMyCollections([...arr]);
+        }
+        else setMyCollections([]);
+    }
+    useEffect(() => {
+        if (stateData?.wallet?.address) name();
+    }, [stateData.wallet.address]);
+    useEffect(() => {
+        console.log(myCollections)
+    }, [myCollections]);
     return (
         <section className="section">
             <div className="filter filter--home">
@@ -71,10 +72,6 @@ export const Section = (props: any) => {
                     <div className="row">
                         <div className="col-12">
                             <div className="filter__content filter__content--reverse">
-                                <form action="#" className="filter__search">
-                                    <input type="text" placeholder="Search..." />
-                                    <button type="button" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z" /></svg></button>
-                                </form>
                                 <div className="filter__wrap">
                                     <select className="filter__select" name="blockchain" id="filter__blockchain">
                                         <option value="0">All blockchains</option>
@@ -120,10 +117,13 @@ export const Section = (props: any) => {
             </div>
             <div className="container">
                 <div className="row">
+
                     {/* <img src={myCollections} width={500} height={500} /> */}
                     {
-                        myCollections.map((nft: any, index: number) => {
-                            return (<NFTNode data={nft} key={index} />);
+                        myCollections.map((item: any) => {
+                            return (
+                                <NFTNode data={item} key={item.id} />
+                            )
                         })
                     }
                 </div>

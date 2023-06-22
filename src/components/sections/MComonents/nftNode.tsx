@@ -5,17 +5,17 @@ interface NFTdataProps {
     key: number;
 }
 export const NFTNode = ({ data, key }: NFTdataProps) => {
-    // console.log(data);
     const [nftdata, setNftData] = useState<any>({});
     useEffect(() => {
+        // console.log(data.nftName);
         getCloudFlareImage(data.avatar, 500).then((res) => {
             data.avatarUrl = res;
             setNftData(data);
 
         }).catch(() => { console.log("error"); });
-    }, []);
+    }, [data]);
     return (
-        <div className="col-12 col-md-6 col-xl-4">
+        <div className="col-12 col-md-6 col-xl-4" key={key}>
             <div className="game">
                 <div className="game__head">
                     <div className="game__cover">

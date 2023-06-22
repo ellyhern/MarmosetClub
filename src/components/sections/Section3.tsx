@@ -50,13 +50,15 @@ export const Section3 = () => {
                 <div className="row">
                     <div className="col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-0 align-self-center">
                         <div className="section__title section__title--grid-right">
-                            <strong>Become a partner</strong>
+                            <strong>Become a member</strong>
                             <h2 style={{ width: "500px", wordWrap: "break-word" }}>{aboutData.title}</h2>
                             <p style={{ width: "520px", wordWrap: "break-word" }}>{aboutData.text}</p>
-
-                            <a href="/verify" className="section__btn section__btn--grid"><span>Become</span></a>
                         </div>
-                    </div>
+                        <div className="section__title section__title--grid-buttons">
+                            <a href="/verify" className="section__btn section__btn--grid"><span>Verify Membership</span></a>
+                            <a href="/verify" className="section__btn section__btn--grid"><span>Buy an NFT</span></a>
+                        </div>
+                    </div >
                     <div className="col-12 col-lg-6 align-self-center">
                         <ul className="sponsors sponsors--small">
                             {

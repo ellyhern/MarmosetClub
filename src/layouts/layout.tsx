@@ -6,7 +6,7 @@ export const Layout = (props: any) => {
   return (
     <>
       {/* <MainContainer> */}
-      <Header {...props} />
+      <Header />
       {props.children}
       <WalletModal />
       <Footer />

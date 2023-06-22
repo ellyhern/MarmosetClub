@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect, useContext, useCallback } from 'react';
-import { useStore } from '../context/StoreContext';
 import { WalletContext } from '../subwalletcomponents/contexts';
 import { useNavigate } from 'react-router-dom';
-import { SUPPORTED_WALLET_LIST } from "../constants/index";
-import { Button, message } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+import { setWalletAddress } from '../redux/action';
 interface WalletButton {
   src?: string;
   alt?: string;
@@ -24,6 +25,9 @@ export const Header = (props: any) => {
   const [walletBtnName, setWalletBtnName] = useState<WalletBtnName>({ name: "Connect", address: "" });
   const [walletInfo, setWalletInfo] = useState<string>("");
   const [curWallet, setCurWallet] = useState<any>({});
+  const stateData = useSelector((state: any) => state);
+  const dispatch = useDispatch();
+
   const handleClickOutside = (event: React.MouseEvent<HTMLElement>) => {
     if (mbDropRef.current != null && !mbDropRef.current.contains(event.target as any)) {
       mobSetOpen(false);
@@ -38,6 +42,7 @@ export const Header = (props: any) => {
   const ongohome = () => navigate('/');
 
   useEffect(() => {
+    console.log(stateData);
     const walletmarmoset = window.localStorage.getItem("marmoset");
     if (walletmarmoset && walletmarmoset?.length > 3) {
       const parsedData = JSON.parse(walletmarmoset);
@@ -45,14 +50,14 @@ export const Header = (props: any) => {
     }
     else {
       if (walletContext.accounts.length > 0) {
+
         setCurWallet(walletContext.accounts[0]);
         const account = walletContext?.accounts?.[0];
         const accountString = JSON.stringify(account);
         window.localStorage.setItem("marmoset", accountString);
       }
-      // setCurWallet(JSON.parse(window.localStorage?.getItem("marmoset")));
     }
-  }, [walletContext, props.currentWallet]);
+  }, [walletContext]);
 
   useEffect(() => {
     document.addEventListener('mousedown', (event) => handleClickOutside(event as any));
@@ -63,7 +68,8 @@ export const Header = (props: any) => {
     const walletmarmoset = window.localStorage.getItem("marmoset");
     if (walletmarmoset && walletmarmoset?.length > 3) {
       const parsedData = JSON.parse(walletmarmoset);
-      props.setWallet({ name: parsedData?.name, address: parsedData?.address.slice(0, 5) });
+      dispatch(setWalletAddress(parsedData?.address));
+      // toastr.success("Wallet successfully changed!");
       setWalletInfo(`${parsedData?.name}: ${parsedData?.address.slice(0, 5)}`);
     }
   }, [window.localStorage.getItem("marmoset")]);
@@ -74,6 +80,7 @@ export const Header = (props: any) => {
       setCurWallet(ac);
       const account = ac;
       const accountString = JSON.stringify(account);
+      toastr.success("Wallet successfully changed!");
       window.localStorage.setItem("marmoset", accountString);
       return () => { console.log("====================") };
     },
@@ -82,6 +89,7 @@ export const Header = (props: any) => {
 
   const onDisconnect = () => {
     window.localStorage.removeItem("marmoset");
+    toastr.warning("Wallet successfully disconnected!");
     setCurWallet({});
   };
 
@@ -119,8 +127,8 @@ export const Header = (props: any) => {
                     </a>
                   </li>
 
-                  <li>
-                    <a href="/about">Learn more</a>
+                  <li className="header__dropdown">
+                    <a className="dropdown-link" href="/about" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
                   </li>
                   <li className="header__dropdown">
                     <a className="dropdown-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages

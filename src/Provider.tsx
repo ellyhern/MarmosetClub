@@ -13,7 +13,7 @@ const theme = {
   ...TEXT_SIZE
 };
 
-export const Provider = ({ children }: ProviderProps) => {
+export const AllProvider = ({ children }: ProviderProps) => {
   return (
     <ThemeProvider theme={theme}>
       <ToastContainer

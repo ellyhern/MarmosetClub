@@ -15,7 +15,7 @@ function WalletInfo(props: any): React.ReactElement {
     <div className={'wallet-info-page'}>
       <div className='wallet-info-page__text'>Version: {(walletContext?.wallet as Wallet)?.extension?.version}</div>
       <div className='wallet-info-page__text'>Account List</div>
-      <AccountList {...props} />
+      <AccountList />
       <div className='wallet-info-page__text'>Metadata</div>
       <WalletMetadata />
     </div>

@@ -4,7 +4,8 @@ import { getEvmWalletBySource } from '@subwallet/wallet-connect/evm/evmWallets';
 import { useNavigate } from 'react-router-dom';
 import { OpenSelectWallet, WalletContext } from '../subwalletcomponents/contexts';
 import SelectWallet from '../subwalletcomponents/components/SelectWallet';
-
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 export const WalletModal = () => {
   const openSelectWalletContext = useContext(OpenSelectWallet);
   const walletContext = useContext(WalletContext);
@@ -12,8 +13,8 @@ export const WalletModal = () => {
 
   const onSelectWallet = useCallback(
     (walletKey: any, walletType: 'substrate' | 'evm' = 'substrate') => {
-
       if (walletType === 'substrate') {
+        toastr.success("Wallet Successfully connected!");
         walletContext.setWallet(getWalletBySource(walletKey), walletType);
         // openSelectWalletContext.close();
         // navigate('/wallet-info');
