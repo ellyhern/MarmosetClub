@@ -18,7 +18,7 @@ export const Home = (props: any) => {
         </Container>
       </PageWrapper> */}
       <Hero />
-      <Section  {...props} />
+      <Section />
       <SectionLight />
       <Section3 />
       <SectionBT />
