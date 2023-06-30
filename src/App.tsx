@@ -8,11 +8,9 @@ import { NotFoundPage } from './pages/404';
 import { Verify } from './pages/verify';
 import { Layout } from 'src/layouts/layout';
 import './config/i18n';
-import '@rainbow-me/rainbowkit/styles.css';
 import { WalletContextProvider } from "./subwalletcomponents/providers/WalletContextProvider";
 import { store } from './redux/store';
 function App() {
-
   return (
     <BrowserRouter>
       <WalletContextProvider>
