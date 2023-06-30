@@ -2,7 +2,7 @@
 // Copyright 2019-2022 @subwallet/sub-connect authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 // import { EditOutlined } from '@ant-design/icons';
-import { Button, message } from 'antd';
+// import { Button, message } from 'antd';
 import React, { useCallback, useContext } from 'react';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
@@ -20,8 +20,7 @@ function AccountList(props: any): React.ReactElement {
       if ((signer?.signRaw)) {
         const signPromise = signer.signRaw({ address, data: 'This is dummy message', type: 'bytes' });
         const key = 'sign-status';
-
-        message.loading({ content: 'Signing', key });
+        // message.loading({ content: 'Signing', key });
         signPromise.then((rs: any) => {
           window.localStorage.setItem("marmoset", JSON.stringify({ address, name }));
           toastr.success(`${name} Wallet Connected Successfully!`);
@@ -60,14 +59,14 @@ function AccountList(props: any): React.ReactElement {
           </div>
         </div>
         <div className={'actions'}>
-          <Button
+          {/* <Button
             className='sub-wallet-btn sub-wallet-sign-btn'
             key={acc.address}
             onClick={onSignClicked(acc)}
             type={'primary'}
           >
             Sign Dummy
-          </Button>
+          </Button> */}
         </div>
       </div>
     ))}

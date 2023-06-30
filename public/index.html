@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="%PUBLIC_URL%/css/splide.min.css">
   <link rel="stylesheet" href="%PUBLIC_URL%/css/slimselect.css">
   <link rel="stylesheet" href="%PUBLIC_URL%/css/main.css">
+  <link rel="stylesheet" href="%PUBLIC_URL%/aos/dist/aos.css">
+
 
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -56,7 +58,22 @@
   <script src="%PUBLIC_URL%/js/chart.js"></script>
   <script src="%PUBLIC_URL%/js/three.min.js"></script>
   <script src="%PUBLIC_URL%/js/vanta.cells.min.js"></script>
+  <script src="/aos/dist/aos.js"></script>
   <script src="%PUBLIC_URL%/js/main.js"></script>
+  <script src="%PUBLIC_URL%/aos/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      startEvent: 'someCoolEvent',
+      offset: 200,
+      duration: 600,
+      easing: 'ease-in-sine',
+      delay: 100,
+      disable: function () {
+        var maxWidth = 1024;
+        return window.innerWidth < maxWidth;
+      }
+    });
+  </script>
 </body>
 
 </html>

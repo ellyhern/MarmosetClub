@@ -11,6 +11,8 @@ import './config/i18n';
 import { WalletContextProvider } from "./subwalletcomponents/providers/WalletContextProvider";
 import { store } from './redux/store';
 function App() {
+
+
   return (
     <BrowserRouter>
       <WalletContextProvider>
