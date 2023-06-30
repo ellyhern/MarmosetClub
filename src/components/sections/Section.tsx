@@ -51,18 +51,9 @@ export const Section = (props: any) => {
                 return collection;
             })
         );
-        data = data.filter((item) => item.listNFT?.length > 0);
-
-        console.log(data);
-
-        if (data.length > 0) {
-            const arr = data.filter(item => item.listNFT.length > 0)
-                .map(item => item.listNFT).flat(2);
-
-
-            setMyCollections([...arr]);
-        }
-        else setMyCollections([]);
+        const arr = data.filter(item => item.listNFT?.length > 0)
+            .flatMap(item => item.listNFT ?? []);
+        setMyCollections([...arr]);
     }
     useEffect(() => {
         if (stateData?.wallet?.address) name();
