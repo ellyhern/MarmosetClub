@@ -22,7 +22,7 @@ export const Section = (props: any) => {
             currentAccount = JSON.parse(walletmarmoset);
         }
 
-        let data = await Promise.all(
+        const data = await Promise.all(
             allCollectionsOwned?.map(async (collection: any) => {
                 const options = {
                     collection_address: collection.nftContractAddress,
