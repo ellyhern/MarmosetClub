@@ -9,7 +9,7 @@ export const Section = (props: any) => {
     const [myCollections, setMyCollections] = useState<any>([]);
     const stateData = useSelector((state: any) => state);
     async function name() {
-        let arr = [];
+
         const allCollectionsOwned = await clientAPI("post", "/getCollections", {
             limit: 10000,
             offset: 0,
@@ -53,8 +53,13 @@ export const Section = (props: any) => {
         );
         data = data.filter((item) => item.listNFT?.length > 0);
 
+        console.log(data);
+
         if (data.length > 0) {
-            arr = data[0].listNFT;
+            const arr = data.filter(item => item.listNFT.length > 0)
+                .map(item => item.listNFT).flat(2);
+
+
             setMyCollections([...arr]);
         }
         else setMyCollections([]);
