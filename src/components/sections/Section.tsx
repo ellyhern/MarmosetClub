@@ -58,9 +58,6 @@ export const Section = (props: any) => {
     useEffect(() => {
         if (stateData?.wallet?.address) name();
     }, [stateData.wallet.address]);
-    useEffect(() => {
-        console.log(myCollections)
-    }, [myCollections]);
     return (
         <section className="section">
             <div className="filter filter--home">
