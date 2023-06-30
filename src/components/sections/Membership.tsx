@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-export const Section3 = () => {
+export const Membership = () => {
     const data = [
         {
             "imgsrc": "img/sponsors/logo1.svg",

@@ -3,7 +3,7 @@ import { clientAPI, APICall } from "../../utils/client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
-export const Section = (props: any) => {
+export const NFTPlace = (props: any) => {
 
     const [filterSelected, setFilterSelected] = useState("COLLECTED");
     const [myCollections, setMyCollections] = useState<any>([]);

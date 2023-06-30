@@ -23,7 +23,7 @@ const responsive = {
     }
 };
 
-export const Hero = () => {
+export const Carousel = () => {
     const [slidedata, setSlideData] = useState([
         {
             "heroTitle": "Realms Of Ethernity",

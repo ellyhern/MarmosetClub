@@ -1,4 +1,4 @@
-export const SectionLight = () => {
+export const Roadmap = () => {
     return (
         <section className="section section--light">
             <div className="container">
