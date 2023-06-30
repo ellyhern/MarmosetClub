@@ -5,10 +5,10 @@
 /build
 /.pnp
 .pnp.js
-
 # testing
 /coverage
-
+/yarn.lock
+/package.json.lock
 # production
 
 
