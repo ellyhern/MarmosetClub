@@ -1,9 +1,7 @@
 {
-  "name": "MarmosetClub",
+  "name": "marmosetclub",
   "version": "0.1.0",
-  "author": {
-    "name": "HoneyLee"
-  },
+  "author": "HoneyLee",
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
@@ -125,5 +123,15 @@
     "@types/node": "^16.7.13",
     "typescript": "^4.6.4"
   },
-  "homepage": "."
+  "homepage": "http://.",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lionkinghuge/MarmosetClub.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lionkinghuge/MarmosetClub/issues"
+  }
 }
