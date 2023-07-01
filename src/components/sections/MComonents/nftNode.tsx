@@ -16,8 +16,8 @@ export const NFTNode = ({ data, key }: NFTdataProps) => {
     }, [data]);
     return (
         <div className="col-12 col-md-6 col-xl-4 aos-item__inner"
-            data-aos="fade-up"
-            data-aos-delay="100"
+            // data-aos="fade-up"
+            // data-aos-delay="100"
             key={key}>
             <div className="game">
                 <div className="game__head">

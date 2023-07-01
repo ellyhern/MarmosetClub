@@ -110,8 +110,6 @@ export const NFTPlace = (props: any) => {
             </div>
             <div className="container">
                 <div className="row">
-
-                    {/* <img src={myCollections} width={500} height={500} /> */}
                     {
                         myCollections.map((item: any) => {
                             return (
