@@ -89,7 +89,6 @@ export const Carousel = () => {
                                     </ul>
                                 </div>
                             </div>
-                            {/* <div id="canvas" className="hero__canvas"></div> */}
                             <div id="canvas" className="hero__canvas">
                                 <canvas
                                     className="vanta-canvas"

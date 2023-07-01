@@ -17,21 +17,6 @@ export const SlideNode = ({ slideinfo, slideKey }: SlideNodeProps) => {
                     <div className="game__bg">
                         <img src={slideinfo.img} alt="Realms Of Ethernity" />
                     </div>
-
-                    {/* <ul className="game__list">
-                        <li>
-                            <span>{slideinfo.devices}</span>
-                        </li>
-                        <li>
-                            <span className="true">{slideinfo.freetoplay}</span>
-                        </li>
-                        <li>
-                            <span className="required">{slideinfo.playtoearn}</span>
-                        </li>
-                        <li>
-                            <span className="process">{slideinfo.Status}</span>
-                        </li>
-                    </ul> */}
                 </div>
             </div>
         </li>
